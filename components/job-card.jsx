@@ -12,7 +12,6 @@ import Link from "next/link";
 export function JobCard({ job }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
-    console.log("JobCard rendered with job: ", job);
 
     return (
         <Card className={cn("overflow-hidden transition-all duration-300 hover:shadow-md h-full", isHovered && "transform-gpu scale-[1.02]")} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>

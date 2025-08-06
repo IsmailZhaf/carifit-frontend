@@ -23,8 +23,6 @@ export default function JobDetailPage(props) {
     const [allJobs, setAllJobs] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    console.log("All Jobs:", allJobs);
-    console.log("Job :", job);
 
     useEffect(() => {
         const fetchJobData = async () => {
@@ -47,7 +45,6 @@ export default function JobDetailPage(props) {
                 const currentJob = jobs.find((j) => j.id === params.id || j.jobHash === params.id);
 
                 if (currentJob) {
-                    console.log("Current Job Desc:", currentJob.description);
                     // Transform the job data to match the expected format
                     const transformedJob = {
                         id: currentJob.id,

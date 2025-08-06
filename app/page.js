@@ -17,7 +17,6 @@ export default function Home() {
     useEffect(() => {
         // Add a delay to ensure everything is mounted
         const timer = setTimeout(() => {
-            console.log("Attempting to show toast...");
             toast.success("🚀 Welcome to CariFit!", {
                 description: "Your AI-powered job matching platform",
                 duration: 5000,

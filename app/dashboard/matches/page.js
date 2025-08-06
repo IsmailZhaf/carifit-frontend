@@ -31,32 +31,13 @@ export default function MatchesPage() {
             try {
                 setLoading(true);
                 const response = await fetch("/api/recommendations");
-                console.log("Response:", response);
 
                 if (!response.ok) {
                     throw new Error("Failed to fetch recommendations");
                 }
 
                 const result = await response.json();
-                console.log("API Result:", result);
-                console.log("Jobs data:", result.data);
 
-                // Log each job to see what fields are missing
-                if (result.data && result.data.length > 0) {
-                    result.data.forEach((job, index) => {
-                        console.log(`Job ${index}:`, job);
-                        console.log(`Job ${index} fields:`, {
-                            id: job.id,
-                            title: job.title,
-                            company: job.company,
-                            location: job.location,
-                            skills: job.skills,
-                            matchPercentage: job.matchPercentage,
-                            postedDate: job.postedDate,
-                            description: job.description,
-                        });
-                    });
-                }
 
                 setJobs(result.data || []);
                 setApiMessage(result.message);

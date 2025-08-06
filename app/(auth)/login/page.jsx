@@ -30,7 +30,6 @@ export default function LoginPage() {
 
         try {
             const response = await login(email, password);
-            console.log("Login response:", response);
 
             setShowSuccessParticles(true);
             toast.success("Login successful! Redirecting to dashboard...");

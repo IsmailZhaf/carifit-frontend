@@ -25,7 +25,6 @@ export async function GET() {
         }
 
         const userData = await response.json();
-        console.log("User data:", userData);
 
         return NextResponse.json({
             user: {
