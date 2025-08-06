@@ -34,9 +34,8 @@ export default function LoginPage() {
 
             setShowSuccessParticles(true);
             toast.success("Login successful! Redirecting to dashboard...");
-            router.push("/dashboard");
             setTimeout(() => {
-                router.push("/dashboard");
+                window.location.href = "/dashboard";
             }, 1000);
         } catch (err) {
             setError(err.message || "An error occurred during login. Please try again.");
