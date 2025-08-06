@@ -3,7 +3,9 @@ import { getSession } from "@/lib/auth/session";
 
 export async function GET() {
     try {
-        const token = getSession();
+        const token = request.cookies.get("session")?.value || request.cookies.get("_vercel_jwt")?.value;
+
+        console.log("Session token from route:", token);
 
         if (!token) {
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
