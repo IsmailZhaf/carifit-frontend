@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 export async function GET() {
     try {
         const cookieStore = await cookies();
+        console.log("Cookies:", cookieStore);
         const token = cookieStore.get("session")?.value;
         console.log("Session token:", token);
 
