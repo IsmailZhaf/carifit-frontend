@@ -35,42 +35,42 @@ export async function middleware(request) {
         return NextResponse.redirect(new URL("/dashboard", request.url));
     }
 
-    if (isProtectedRoute && session) {
-        try {
-            console.log("Verifying session...");
-            const verifyResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/verify-token", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: `Bearer ${session}`,
-                },
-            });
+    // if (isProtectedRoute && session) {
+    //     try {
+    //         console.log("Verifying session...");
+    //         const verifyResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/verify-token", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //                 Authorization: `Bearer ${session}`,
+    //             },
+    //         });
 
-            console.log("Verify response status:", verifyResponse.status);
+    //         console.log("Verify response status:", verifyResponse.status);
 
-            if (!verifyResponse.ok) {
-                if (pathname.startsWith("/api/")) {
-                    const response = NextResponse.json({ error: "Invalid session" }, { status: 401 });
-                    response.cookies.delete("session");
-                    return response;
-                }
+    //         if (!verifyResponse.ok) {
+    //             if (pathname.startsWith("/api/")) {
+    //                 const response = NextResponse.json({ error: "Invalid session" }, { status: 401 });
+    //                 response.cookies.delete("session");
+    //                 return response;
+    //             }
 
-                const response = NextResponse.redirect(new URL("/login", request.url));
-                response.cookies.delete("session");
-                return response;
-            }
-        } catch (error) {
-            if (pathname.startsWith("/api/")) {
-                const response = NextResponse.json({ error: "Session verification failed" }, { status: 401 });
-                response.cookies.delete("session");
-                return response;
-            }
+    //             const response = NextResponse.redirect(new URL("/login", request.url));
+    //             response.cookies.delete("session");
+    //             return response;
+    //         }
+    //     } catch (error) {
+    //         if (pathname.startsWith("/api/")) {
+    //             const response = NextResponse.json({ error: "Session verification failed" }, { status: 401 });
+    //             response.cookies.delete("session");
+    //             return response;
+    //         }
 
-            const response = NextResponse.redirect(new URL("/login", request.url));
-            response.cookies.delete("session");
-            return response;
-        }
-    }
+    //         const response = NextResponse.redirect(new URL("/login", request.url));
+    //         response.cookies.delete("session");
+    //         return response;
+    //     }
+    // }
 
     return NextResponse.next();
 }
