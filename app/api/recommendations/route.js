@@ -80,7 +80,6 @@ export async function GET(request) {
     const backendData = await backendResponse.json();
 
     const transformedData = Array.isArray(backendData) ? backendData.map((item, index) => {
-      console.log(`Transforming job ${index}:`, item);
       
       const job = item.job;
       
@@ -104,7 +103,6 @@ export async function GET(request) {
         matchReason: item.reason || ''
       };
       
-      console.log(`Transformed job ${index}:`, transformed);
       return transformed;
     }) : [];
 
