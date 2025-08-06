@@ -1,12 +1,9 @@
 import { NextResponse } from "next/server";
-import { cookies } from "next/headers";
+import { getSession } from "@/lib/auth/session";
 
 export async function GET() {
     try {
-        const cookieStore = await cookies();
-        console.log("Cookies:", cookieStore);
-        const token = cookieStore.get("session")?.value;
-        console.log("Session token:", token);
+        const token = getSession();
 
         if (!token) {
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
