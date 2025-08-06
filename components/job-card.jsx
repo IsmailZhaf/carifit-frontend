@@ -12,15 +12,13 @@ import Link from "next/link";
 export function JobCard({ job }) {
     const [isExpanded, setIsExpanded] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    console.log("JobCard rendered with job: ", job);
 
     return (
         <Card className={cn("overflow-hidden transition-all duration-300 hover:shadow-md h-full", isHovered && "transform-gpu scale-[1.02]")} onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
             <CardContent className="p-6">
                 <div className="flex items-start justify-between">
                     <div className="flex items-start space-x-4">
-                        <div className={cn("h-12 w-12 rounded-md overflow-hidden bg-muted flex items-center justify-center transition-transform duration-300", isHovered && "scale-110")}>
-                            <img src={job.logo || "/placeholder.svg"} alt={job.company} className="h-full w-full object-cover" />
-                        </div>
                         <div>
                             <h3 className="font-semibold text-lg line-clamp-1">{job.title}</h3>
                             <p className="text-sm text-muted-foreground">{job.company}</p>
@@ -66,21 +64,21 @@ export function JobCard({ job }) {
                     >
                         {isExpanded ? (
                             <>
-                                Show less <ChevronUp className="ml-1 h-4 w-4" />
+                                Tampilkan lebih sedikit <ChevronUp className="ml-1 h-4 w-4" />
                             </>
                         ) : (
                             <>
-                                Show more <ChevronDown className="ml-1 h-4 w-4" />
+                                Tampilkan lebih banyak <ChevronDown className="ml-1 h-4 w-4" />
                             </>
                         )}
                     </button>
                 )}
             </CardContent>
-            <CardFooter className="flex items-center justify-between p-6 pt-0 border-t mt-auto">
-                <p className="text-sm text-muted-foreground">Posted {job.postedDate}</p>
+            <CardFooter className="flex items-center justify-between gap-2 p-6 pt-0 border-t mt-auto">
+                <p className="text-sm text-muted-foreground">Diposting {job.postedDate}</p>
                 <Link href={`/dashboard/matches/${job.id}`} className="block h-full">
                     <AnimatedButton size="sm" className="gap-1.5  cursor-pointer">
-                        View Job <ExternalLink className="h-3.5 w-3.5" />
+                        Lihat Pekerjaan <ExternalLink className="h-3.5 w-3.5" />
                     </AnimatedButton>
                 </Link>
             </CardFooter>

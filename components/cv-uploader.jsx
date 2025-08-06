@@ -23,18 +23,18 @@ export function CVUploader({ onUploadComplete, className }) {
             setErrorMessage(null);
 
             const formData = new FormData();
-            formData.append('file', selectedFile);
+            formData.append("file", selectedFile);
 
             const progressInterval = setInterval(() => {
-                setProgress(prev => {
+                setProgress((prev) => {
                     const newProgress = prev + 10;
                     return newProgress > 90 ? 90 : newProgress;
                 });
             }, 200);
 
-            const response = await fetch('/api/cv/upload', {
-                method: 'POST',
-                credentials: 'include',
+            const response = await fetch("/api/cv/upload", {
+                method: "POST",
+                credentials: "include",
                 body: formData,
             });
 
@@ -43,31 +43,30 @@ export function CVUploader({ onUploadComplete, className }) {
 
             if (!response.ok) {
                 const errorData = await response.json();
-                
+
                 // Handle authentication errors
                 if (response.status === 401) {
-                    throw new Error('Session expired. Please log in again.');
+                    throw new Error("Session expired. Please log in again.");
                 }
-                
-                throw new Error(errorData.error || 'Upload failed');
+
+                throw new Error(errorData.error || "Upload failed");
             }
 
             const result = await response.json();
             setUploadResult(result);
             setStatus("success");
-            
+
             if (onUploadComplete) {
                 onUploadComplete(selectedFile, result);
             }
-
         } catch (error) {
             setStatus("error");
             setErrorMessage(error.message);
-            console.error('Upload error:', error);
-            
-            if (error.message.includes('Session expired')) {
+            console.error("Upload error:", error);
+
+            if (error.message.includes("Session expired")) {
                 setTimeout(() => {
-                    window.location.href = '/login';
+                    window.location.href = "/login";
                 }, 2000);
             }
         }
@@ -90,7 +89,6 @@ export function CVUploader({ onUploadComplete, className }) {
             "application/pdf": [".pdf"],
             "application/msword": [".doc"],
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document": [".docx"],
-            "text/plain": [".txt"],
         },
         maxFiles: 1,
         disabled: status === "uploading",
@@ -131,10 +129,10 @@ export function CVUploader({ onUploadComplete, className }) {
                         <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mb-4 transition-transform duration-500 hover:scale-110 hover:bg-primary/20">
                             <FileUp className={cn("h-8 w-8 text-primary transition-transform duration-300", isDragActive && "scale-125")} />
                         </div>
-                        <h3 className="text-lg font-semibold mb-2">{isDragActive ? "Drop your CV here" : "Upload your CV"}</h3>
-                        <p className="text-sm text-muted-foreground mb-4 max-w-md">Drag and drop your CV file here, or click to browse. We support PDF, DOC, DOCX, and TXT formats.</p>
+                        <h3 className="text-lg font-semibold mb-2">{isDragActive ? "Seret CV Anda di sini" : "Unggah CV Anda"}</h3>
+                        <p className="text-sm text-muted-foreground mb-4 max-w-md">Seret dan letakkan berkas CV Anda di sini, atau klik untuk menelusuri. Kami mendukung format PDF, DOC, dan DOCX.</p>
                         <AnimatedButton variant="outline" size="sm">
-                            Select File
+                            Pilih File
                         </AnimatedButton>
                     </>
                 )}
@@ -142,13 +140,13 @@ export function CVUploader({ onUploadComplete, className }) {
                 {status === "uploading" && (
                     <>
                         <Loader2 className="h-12 w-12 text-primary animate-spin mb-4" />
-                        <h3 className="text-lg font-semibold mb-2">Uploading your CV</h3>
+                        <h3 className="text-lg font-semibold mb-2">Mengunggah CV Anda</h3>
                         <p className="text-sm text-muted-foreground mb-4">{file?.name}</p>
                         <div className="w-full max-w-md mb-4 progress-pulse">
                             <Progress value={progress} className="h-2" />
                         </div>
                         <p className="text-sm text-muted-foreground">
-                            <span className="inline-block animate-pulse">Analyzing your skills and experience...</span>
+                            <span className="inline-block animate-pulse">Menganalisis keterampilan dan pengalaman Anda...</span>
                         </p>
                     </>
                 )}
@@ -161,7 +159,6 @@ export function CVUploader({ onUploadComplete, className }) {
                         <p className="text-sm text-muted-foreground mb-2">{file?.name}</p>
                         {uploadResult && (
                             <div className="text-sm text-muted-foreground mb-4 space-y-1">
-
                                 <h3 className="text-green-600">{uploadResult.message}</h3>
                             </div>
                         )}
@@ -178,12 +175,10 @@ export function CVUploader({ onUploadComplete, className }) {
                         <div className="mb-4 transform transition-all duration-300 animate-shake">
                             <AlertCircle className="h-12 w-12 text-destructive" />
                         </div>
-                        <h3 className="text-lg font-semibold mb-2">Upload Failed</h3>
-                        <p className="text-sm text-muted-foreground mb-4">
-                            {errorMessage || "There was an error uploading your file. Please try again."}
-                        </p>
+                        <h3 className="text-lg font-semibold mb-2">Gagal Mengunggah</h3>
+                        <p className="text-sm text-muted-foreground mb-4">{errorMessage || "Terjadi kesalahan saat mengunggah berkas Anda. Silakan coba lagi."}</p>
                         <AnimatedButton variant="outline" size="sm" onClick={resetUpload}>
-                            Try Again
+                            Coba Lagi
                         </AnimatedButton>
                     </>
                 )}

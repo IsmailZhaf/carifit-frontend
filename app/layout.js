@@ -1,9 +1,8 @@
-import { Inter } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "next-themes"
-import { AuthProvider } from "@/context/provider"
-import { Toaster } from "@/components/ui/sonner"
-import NotificationListener from "@/components/NotificationListener"
+import { Inter } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "next-themes";
+import { AuthProvider } from "@/context/provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,9 +18,6 @@ export default function RootLayout({ children }) {
                 <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">
                     <AuthProvider>
                         {children}
-                        {/* Global notification listener - runs on every page */}
-                        <NotificationListener />
-                        {/* ShadCN Toaster component for displaying notifications */}
                         <Toaster richColors position="top-right" expand={true} closeButton={true} />
                     </AuthProvider>
                 </ThemeProvider>

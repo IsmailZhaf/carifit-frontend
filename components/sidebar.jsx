@@ -22,13 +22,13 @@ export function Sidebar({ className }) {
             active: pathname === "/dashboard",
         },
         {
-            label: "Upload CV",
+            label: "Unggah CV",
             icon: FileText,
             href: "/dashboard/upload",
             active: pathname === "/dashboard/upload",
         },
         {
-            label: "Job Matches",
+            label: "Pekerjaan",
             icon: Briefcase,
             href: "/dashboard/matches",
             active: pathname === "/dashboard/matches",
@@ -39,13 +39,18 @@ export function Sidebar({ className }) {
         try {
             await logout();
         } catch (error) {
-            console.error('Logout failed:', error);
+            console.error("Logout failed:", error);
         }
     };
 
     const getUserInitials = (name) => {
         if (!name) return "U";
-        return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+        return name
+            .split(" ")
+            .map((n) => n[0])
+            .join("")
+            .toUpperCase()
+            .slice(0, 2);
     };
 
     return (
@@ -85,9 +90,7 @@ export function Sidebar({ className }) {
                     {!isLoading && user && (
                         <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-muted/50">
                             <Avatar className="h-8 w-8">
-                                <AvatarFallback className="text-xs">
-                                    {getUserInitials(user.name)}
-                                </AvatarFallback>
+                                <AvatarFallback className="text-xs">{getUserInitials(user.name)}</AvatarFallback>
                             </Avatar>
                             <div className="flex-1 min-w-0">
                                 <p className="text-sm font-medium truncate">{user.name}</p>
@@ -95,7 +98,7 @@ export function Sidebar({ className }) {
                             </div>
                         </div>
                     )}
-                    <Button variant="outline" className="w-full justify-start gap-2" onClick={handleLogout}>
+                    <Button variant="outline" className="w-full justify-start gap-2 cursor-pointer" onClick={handleLogout}>
                         <LogOut className="h-4 w-4" />
                         Log out
                     </Button>
@@ -133,9 +136,7 @@ export function Sidebar({ className }) {
                             {!isLoading && user && (
                                 <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-muted/50">
                                     <Avatar className="h-10 w-10">
-                                        <AvatarFallback>
-                                            {getUserInitials(user.name)}
-                                        </AvatarFallback>
+                                        <AvatarFallback>{getUserInitials(user.name)}</AvatarFallback>
                                     </Avatar>
                                     <div className="flex-1 min-w-0">
                                         <p className="text-base font-medium truncate">{user.name}</p>
@@ -143,7 +144,7 @@ export function Sidebar({ className }) {
                                     </div>
                                 </div>
                             )}
-                            <Button variant="outline" className="w-full justify-start gap-2 py-3 text-base" onClick={handleLogout}>
+                            <Button variant="outline" className="w-full justify-start gap-2 py-3 text-base hover:cursor-pointer" onClick={handleLogout}>
                                 <LogOut className="h-5 w-5" />
                                 Log out
                             </Button>

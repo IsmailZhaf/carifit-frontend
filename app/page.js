@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
 import { toast } from "sonner";
-import { useEffect } from "react"
+import { useEffect } from "react";
 import Link from "next/link";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
@@ -17,17 +17,16 @@ export default function Home() {
     useEffect(() => {
         // Add a delay to ensure everything is mounted
         const timer = setTimeout(() => {
-          console.log("Attempting to show toast...")
-          toast.success("🚀 Welcome to CariFit!", {
-            description: "Your AI-powered job matching platform",
-            duration: 5000,
-          })
-        }, 1000)
-    
-        return () => clearTimeout(timer)
-      }, [])
-    
-    
+            console.log("Attempting to show toast...");
+            toast.success("🚀 Welcome to CariFit!", {
+                description: "Your AI-powered job matching platform",
+                duration: 5000,
+            });
+        }, 1000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="flex min-h-screen flex-col">
             <Navbar />
@@ -39,47 +38,31 @@ export default function Home() {
                             <StaggeredAppear className="flex flex-col justify-center space-y-4">
                                 <div className="space-y-2">
                                     <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                                        Find the Job That <span className="bg-gradient-to-r from-primary-indigo to-accent-emerald bg-clip-text text-transparent">Fits Your CV</span>
+                                        Temukan Pekerjaan yang <span className="bg-gradient-to-r from-primary-indigo to-accent-emerald bg-clip-text text-transparent">Sesuai dengan CV Anda</span>
                                     </h1>
-                                    <p className="max-w-[600px] text-muted-foreground md:text-xl">Let AI analyze your resume and match you to the best-fit jobs. No more endless searching.</p>
+                                    <p className="max-w-[600px] text-muted-foreground md:text-xl">Dengan bantuan AI, temukan pekerjaan yang paling sesuai dengan profil Anda. Proses lebih cepat, hasil lebih relevan.</p>
                                 </div>
                                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                                     <Link href="/register">
                                         <AnimatedButton size="lg" className="gap-1.5">
-                                            Get Started <ArrowRight className="h-4 w-4" />
+                                            Mulai Sekarang
+                                            <ArrowRight className="h-4 w-4" />
                                         </AnimatedButton>
-                                    </Link>
-                                    <Link href="/how-it-works">
-                                        <Button size="lg" variant="outline">
-                                            Learn More
-                                        </Button>
                                     </Link>
                                 </div>
                             </StaggeredAppear>
-                            {/* <div className="mx-auto lg:mx-0 relative">
-                                <RevealOnScroll direction="left">
-                                    <div className="absolute inset-0 bg-gradient-radial from-primary/20 to-transparent blur-2xl opacity-70 animate-pulse" />
-                                    <Image
-                                        src="/placeholder.svg?height=550&width=550"
-                                        alt="CariFit AI Job Matching"
-                                        className="relative mx-auto aspect-square overflow-hidden rounded-xl object-cover object-center sm:w-full lg:order-last"
-                                        width={550}
-                                        height={550}
-                                    />
-                                </RevealOnScroll>
-                            </div> */}
                         </div>
                     </div>
                 </AnimatedGradientBackground>
 
                 {/* How It Works Section */}
-                <section className="py-12 md:py-24 lg:py-32 bg-muted/50">
+                <section id="cara-kerja" className="py-12 md:py-24 lg:py-32 bg-muted/50">
                     <div className="container max-w-[1600px] px-4 md:px-6 mx-auto">
                         <RevealOnScroll>
                             <div className="flex flex-col items-center justify-center space-y-4 text-center">
                                 <div className="space-y-2">
-                                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">How CariFit Works</h2>
-                                    <p className="max-w-[700px] text-muted-foreground md:text-xl">Three simple steps to find your perfect job match</p>
+                                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Bagaimana CariFit Bekerja</h2>
+                                    <p className="max-w-[700px] text-muted-foreground md:text-xl">Tiga langkah sederhana untuk menemukan pekerjaan yang cocok untuk Anda</p>
                                 </div>
                             </div>
                         </RevealOnScroll>
@@ -90,8 +73,8 @@ export default function Home() {
                                         <FileUp className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h3 className="text-xl font-bold">Upload Your CV</h3>
-                                        <p className="text-muted-foreground">Simply drag and drop your resume or CV in any format. Our AI will do the rest.</p>
+                                        <h3 className="text-xl font-bold">Unggah CV Anda</h3>
+                                        <p className="text-muted-foreground">Cukup seret dan letakkan resume atau CV Anda dalam format apa pun. AI kami akan mengerjakan sisanya.</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
@@ -101,8 +84,8 @@ export default function Home() {
                                         <Zap className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h3 className="text-xl font-bold">AI Analyzes Your Skills</h3>
-                                        <p className="text-muted-foreground">Our AI extracts your skills, experience, and qualifications to create your profile.</p>
+                                        <h3 className="text-xl font-bold">AI Menganalisis Keterampilan Anda</h3>
+                                        <p className="text-muted-foreground">AI kami mengekstrak keterampilan, pengalaman, dan kualifikasi Anda untuk membuat profil Anda.</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
@@ -112,8 +95,8 @@ export default function Home() {
                                         <Search className="h-8 w-8 text-primary transition-transform duration-300 group-hover:scale-110" />
                                     </div>
                                     <div className="space-y-2">
-                                        <h3 className="text-xl font-bold">Get Matched to Jobs</h3>
-                                        <p className="text-muted-foreground">Receive personalized job recommendations based on your skills and experience.</p>
+                                        <h3 className="text-xl font-bold">Dapatkan Pekerjaan yang Sesuai</h3>
+                                        <p className="text-muted-foreground">Dapatkan rekomendasi pekerjaan yang dipersonalisasi berdasarkan keterampilan dan pengalaman Anda.</p>
                                     </div>
                                 </div>
                             </RevealOnScroll>
@@ -122,18 +105,18 @@ export default function Home() {
                 </section>
 
                 {/* CTA Section */}
-                <section className="py-12 md:py-24 lg:py-32 bg-background border-t">
+                <section id="mulai-sekarang" className="py-12 md:py-24 lg:py-32 bg-background border-t">
                     <div className="container max-w-[1600px] px-4 md:px-6 mx-auto">
                         <RevealOnScroll>
                             <div className="flex flex-col items-center justify-center space-y-4 text-center">
                                 <div className="space-y-2">
-                                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Ready to Find Your Perfect Job Match?</h2>
-                                    <p className="max-w-[700px] text-muted-foreground md:text-xl">Join thousands of job seekers who have found their dream jobs with CariFit.</p>
+                                    <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Siap Menemukan Pekerjaan yang Cocok untuk Anda?</h2>
+                                    <p className="max-w-[700px] text-muted-foreground md:text-xl">Bergabunglah dengan ribuan pencari kerja yang telah menemukan pekerjaan impian mereka dengan CariFit.</p>
                                 </div>
                                 <div className="flex flex-col gap-2 min-[400px]:flex-row">
                                     <Link href="/register">
                                         <AnimatedButton size="lg" className="gap-1.5">
-                                            Get Started <ArrowRight className="h-4 w-4" />
+                                            Mulai Sekarang <ArrowRight className="h-4 w-4" />
                                         </AnimatedButton>
                                     </Link>
                                 </div>

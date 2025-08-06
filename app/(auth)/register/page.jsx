@@ -12,6 +12,7 @@ import { AnimatedButton } from "@/components/animated-button";
 import { Progress } from "@/components/ui/progress";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { useAuth } from "@/context/provider";
+import { toast } from "sonner";
 
 export default function RegisterPage() {
     const router = useRouter();
@@ -33,7 +34,6 @@ export default function RegisterPage() {
         number: false,
         special: false,
     });
-    const [agreedToTerms, setAgreedToTerms] = useState(false);
 
     useEffect(() => {
         const checks = {
@@ -81,21 +81,16 @@ export default function RegisterPage() {
             return;
         }
 
-        if (!agreedToTerms) {
-            setError("You must agree to the terms and conditions");
-            return;
-        }
-
         setIsLoading(true);
 
         try {
             const name = `${firstName} ${lastName}`.trim();
             await register(name, email, password);
+            toast.success("Berhasil mendaftar!");
 
             setTimeout(() => {
                 router.push("/dashboard");
             }, 1000);
-
         } catch (err) {
             setError(err.message || "An error occurred during registration. Please try again.");
             setIsLoading(false);
@@ -203,19 +198,6 @@ export default function RegisterPage() {
                                     </div>
                                     {confirmPassword && password !== confirmPassword && <p className="text-xs text-destructive mt-1">Passwords do not match</p>}
                                 </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="terms" checked={agreedToTerms} onCheckedChange={(checked) => setAgreedToTerms(checked)} />
-                                    <Label htmlFor="terms" className="text-sm font-normal">
-                                        I agree to the{" "}
-                                        <Link href="/terms" className="text-primary hover:underline transition-colors">
-                                            Terms of Service
-                                        </Link>{" "}
-                                        and{" "}
-                                        <Link href="/privacy" className="text-primary hover:underline transition-colors">
-                                            Privacy Policy
-                                        </Link>
-                                    </Label>
-                                </div>
                                 {error && <div className="text-sm text-destructive bg-destructive/10 p-2 rounded-md">{error}</div>}
                                 <AnimatedButton type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
@@ -227,8 +209,6 @@ export default function RegisterPage() {
                                     )}
                                 </AnimatedButton>
                             </form>
-
-
                         </CardContent>
                         <CardFooter className="flex flex-col space-y-4">
                             <div className="text-center text-sm">

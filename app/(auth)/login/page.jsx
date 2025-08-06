@@ -1,6 +1,5 @@
 "use client";
 
-
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -12,6 +11,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { AnimatedButton } from "@/components/animated-button";
 import { RevealOnScroll } from "@/components/reveal-on-scroll";
 import { useAuth } from "@/context/provider";
+import { toast } from "sonner";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -29,14 +29,15 @@ export default function LoginPage() {
         setIsLoading(true);
 
         try {
-            await login(email, password);
+            const response = await login(email, password);
+            console.log("Login response:", response);
 
             setShowSuccessParticles(true);
-
+            toast.success("Login successful! Redirecting to dashboard...");
+            router.push("/dashboard");
             setTimeout(() => {
                 router.push("/dashboard");
             }, 1000);
-
         } catch (err) {
             setError(err.message || "An error occurred during login. Please try again.");
             setIsLoading(false);
@@ -89,12 +90,6 @@ export default function LoginPage() {
                                         </button>
                                     </div>
                                 </div>
-                                <div className="flex items-center space-x-2">
-                                    <Checkbox id="remember" />
-                                    <Label htmlFor="remember" className="text-sm font-normal">
-                                        Remember me for 30 days
-                                    </Label>
-                                </div>
                                 {error && <div className="text-sm text-destructive bg-destructive/10 p-2 rounded-md">{error}</div>}
                                 <AnimatedButton type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
@@ -106,8 +101,6 @@ export default function LoginPage() {
                                     )}
                                 </AnimatedButton>
                             </form>
-
-
                         </CardContent>
                         <CardFooter className="flex flex-col space-y-4">
                             <div className="text-center text-sm">

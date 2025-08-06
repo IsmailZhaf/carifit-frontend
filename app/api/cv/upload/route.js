@@ -45,7 +45,7 @@ export async function POST(request) {
     externalFormData.append('file', file);
 
     // Forward to external API with authorization header
-    const response = await fetch('http://127.0.0.1:8000/api/cv/upload/', {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/cv/upload/', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${token}`, // Use token from session

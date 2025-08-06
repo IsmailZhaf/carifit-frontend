@@ -16,7 +16,7 @@ export async function POST(request) {
     }
 
     // Forward the request to the backend
-    const backendResponse = await fetch(process.env.API_URL + '/api/register', {
+    const backendResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/register', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

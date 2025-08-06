@@ -8,16 +8,16 @@ export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const limitParam = searchParams.get('limit');
     
-    if (!process.env.API_URL) {
+    if (!process.env.NEXT_PUBLIC_API_URL) {
       return NextResponse.json(
         { error: 'API_URL environment variable is not configured' },
         { status: 500 }
       );
     }
 
-    console.log('API_URL environment variable:', process.env.API_URL);
+    console.log('API_URL environment variable:', process.env.NEXT_PUBLIC_API_URL);
     
-    let apiUrl = process.env.API_URL + '/api/matching/recommendations';
+    let apiUrl = process.env.NEXT_PUBLIC_API_URL + '/api/matching/recommendations';
     
     if (limitParam) {
       const parsedLimit = parseInt(limitParam, 10);

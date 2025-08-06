@@ -1,7 +1,11 @@
+"use client";
+import { useEffect } from "react";
+import { toast } from "sonner";
 import { Sidebar } from "@/components/sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default function DashboardLayout({ children }) {
+    
     return (
         <div className="flex h-screen bg-muted/30">
             <Sidebar />

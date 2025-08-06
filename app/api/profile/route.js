@@ -13,7 +13,7 @@ export async function GET() {
     }
 
     // Verify token with Django backend
-    const response = await fetch(process.env.API_URL + '/api/verify-token', {
+    const response = await fetch(process.env.NEXT_PUBLIC_API_URL + '/api/verify-token', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
