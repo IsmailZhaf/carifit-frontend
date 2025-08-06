@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { getSession } from "@/lib/auth/session";
 
 export async function GET(request) {
     try {
@@ -8,6 +7,7 @@ export async function GET(request) {
         console.log("Session token from route:", token);
 
         if (!token) {
+            console.log("No session token found");
             return NextResponse.json({ error: "Not authenticated" }, { status: 401 });
         }
 
@@ -21,6 +21,7 @@ export async function GET(request) {
         });
 
         if (!response.ok) {
+            console.log("Response status:", response.status);
             return NextResponse.json({ error: "Invalid session" }, { status: 401 });
         }
 
