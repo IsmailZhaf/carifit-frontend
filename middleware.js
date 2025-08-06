@@ -37,6 +37,7 @@ export async function middleware(request) {
 
     if (isProtectedRoute && session) {
         try {
+            console.log("Verifying session...");
             const verifyResponse = await fetch(process.env.NEXT_PUBLIC_API_URL + "/api/verify-token", {
                 method: "POST",
                 headers: {
