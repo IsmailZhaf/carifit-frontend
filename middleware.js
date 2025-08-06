@@ -45,6 +45,8 @@ export async function middleware(request) {
                 },
             });
 
+            console.log("Verify response status:", verifyResponse.status);
+
             if (!verifyResponse.ok) {
                 if (pathname.startsWith("/api/")) {
                     const response = NextResponse.json({ error: "Invalid session" }, { status: 401 });
