@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getSession } from "@/lib/auth/session";
 
-export async function GET() {
+export async function GET(request) {
     try {
         const token = request.cookies.get("session")?.value || request.cookies.get("_vercel_jwt")?.value;
 
