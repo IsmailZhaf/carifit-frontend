@@ -11,7 +11,7 @@ export default function UploadPage() {
     const [uploadResult, setUploadResult] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        const socket = new WebSocket(`wss://${process.env.NEXT_PUBLIC_WS_API_URL}/ws/notification/`); // Ganti URL sesuai backend kamu
+        const socket = new WebSocket(`ws://${process.env.NEXT_PUBLIC_WS_API_URL}/ws/notification/`); // Ganti URL sesuai backend kamu
 
         socket.onopen = () => {
             console.log("✅ WebSocket connected");
