@@ -72,12 +72,12 @@ export default function RegisterPage() {
 
         // Validation
         if (password !== confirmPassword) {
-            setError("Passwords do not match");
+            setError("Password tidak cocok");
             return;
         }
 
         if (passwordStrength < 60) {
-            setError("Please choose a stronger password");
+            setError("Silakan pilih password yang lebih kuat");
             return;
         }
 
@@ -103,18 +103,18 @@ export default function RegisterPage() {
                 <RevealOnScroll>
                     <Card className="border-none shadow-lg">
                         <CardHeader className="space-y-1">
-                            <CardTitle className="text-2xl font-bold text-center">Create an account</CardTitle>
-                            <CardDescription className="text-center">Enter your information to create your account</CardDescription>
+                            <CardTitle className="text-2xl font-bold text-center">Buat Akun</CardTitle>
+                            <CardDescription className="text-center">Masukkan informasi Anda untuk membuat akun Anda</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <form onSubmit={handleSubmit} className="space-y-4">
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="firstName">First name</Label>
+                                        <Label htmlFor="firstName">Nama Depan</Label>
                                         <Input id="firstName" placeholder="John" value={firstName} onChange={(e) => setFirstName(e.target.value)} required className="transition-all duration-300 focus:ring-2 focus:ring-primary/20" />
                                     </div>
                                     <div className="space-y-2">
-                                        <Label htmlFor="lastName">Last name</Label>
+                                        <Label htmlFor="lastName">Nama Belakang</Label>
                                         <Input id="lastName" placeholder="Doe" value={lastName} onChange={(e) => setLastName(e.target.value)} required className="transition-all duration-300 focus:ring-2 focus:ring-primary/20" />
                                     </div>
                                 </div>
@@ -180,7 +180,7 @@ export default function RegisterPage() {
                                     )}
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="confirmPassword">Confirm password</Label>
+                                    <Label htmlFor="confirmPassword">Konfirmasi password</Label>
                                     <div className="relative">
                                         <Input
                                             id="confirmPassword"
@@ -202,7 +202,7 @@ export default function RegisterPage() {
                                 <AnimatedButton type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
                                         <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Silahkan Tunggu
                                         </>
                                     ) : (
                                         "Create account"
@@ -212,7 +212,7 @@ export default function RegisterPage() {
                         </CardContent>
                         <CardFooter className="flex flex-col space-y-4">
                             <div className="text-center text-sm">
-                                Already have an account?{" "}
+                                Sudah punya akun?
                                 <Link href="/login" className="text-primary hover:underline transition-colors">
                                     Sign in
                                 </Link>

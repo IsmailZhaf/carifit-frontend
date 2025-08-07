@@ -48,8 +48,8 @@ export default function LoginPage() {
                 <RevealOnScroll>
                     <Card className="border-none shadow-lg">
                         <CardHeader className="space-y-1">
-                            <CardTitle className="text-2xl font-bold text-center">Welcome back</CardTitle>
-                            <CardDescription className="text-center">Enter your credentials to access your account</CardDescription>
+                            <CardTitle className="text-2xl font-bold text-center">Selamat Datang Kembali</CardTitle>
+                            <CardDescription className="text-center">Masukkan kredensial Anda untuk mengakses akun Anda</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <form onSubmit={handleSubmit} className="space-y-4">
@@ -68,9 +68,6 @@ export default function LoginPage() {
                                 <div className="space-y-2">
                                     <div className="flex items-center justify-between">
                                         <Label htmlFor="password">Password</Label>
-                                        <Link href="/forgot-password" className="text-xs text-primary hover:underline transition-colors">
-                                            Forgot password?
-                                        </Link>
                                     </div>
                                     <div className="relative">
                                         <Input
@@ -92,7 +89,7 @@ export default function LoginPage() {
                                 <AnimatedButton type="submit" className="w-full" disabled={isLoading}>
                                     {isLoading ? (
                                         <>
-                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Please wait
+                                            <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Silahkan Tunggu
                                         </>
                                     ) : (
                                         "Sign in"
@@ -102,7 +99,7 @@ export default function LoginPage() {
                         </CardContent>
                         <CardFooter className="flex flex-col space-y-4">
                             <div className="text-center text-sm">
-                                Don&apos;t have an account?{" "}
+                                Tidak punya akun?
                                 <Link href="/register" className="text-primary hover:underline transition-colors">
                                     Sign up
                                 </Link>
