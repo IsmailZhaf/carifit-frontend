@@ -205,14 +205,14 @@ export default function RegisterPage() {
                                             <Loader2 className="mr-2 h-4 w-4 animate-spin" /> Silahkan Tunggu
                                         </>
                                     ) : (
-                                        "Create account"
+                                        "Buat Akun"
                                     )}
                                 </AnimatedButton>
                             </form>
                         </CardContent>
                         <CardFooter className="flex flex-col space-y-4">
                             <div className="text-center text-sm">
-                                Sudah punya akun?
+                                Sudah punya akun?{" "}
                                 <Link href="/login" className="text-primary hover:underline transition-colors">
                                     Sign in
                                 </Link>
