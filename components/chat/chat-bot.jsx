@@ -52,7 +52,7 @@ export function ChatBot({ jobTitle, jobDescription, companyName, initialSuggeste
         if (!isOpen) return;
 
         const token = localStorage.getItem("access");
-        const socket = new WebSocket(`ws://${process.env.NEXT_PUBLIC_WS_API_URL}/ws/chat/${jobId}/?token=${token}`);
+        const socket = new WebSocket(`wss://${process.env.NEXT_PUBLIC_WS_API_URL}/ws/chat/${jobId}/?token=${token}`);
 
         wsRef.current = socket;
 
