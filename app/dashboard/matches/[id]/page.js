@@ -300,15 +300,15 @@ export default function JobDetailPage(props) {
                             <div className="flex items-center justify-between mb-4">
                                 <h2 className="text-xl font-semibold">Pekerjaan Serupa</h2>
                             </div>
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <StaggeredAppear staggerAmount={150}>
+                            <StaggeredAppear staggerAmount={150}>
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                     {similarJobs.map((job) => (
                                         <div key={job.id}>
                                             <JobCard job={job} />
                                         </div>
                                     ))}
-                                </StaggeredAppear>
-                            </div>
+                                </div>
+                            </StaggeredAppear>
                         </div>
                     </RevealOnScroll>
                 )}
