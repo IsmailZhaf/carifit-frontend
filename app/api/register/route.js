@@ -27,8 +27,6 @@ export async function POST(request) {
 
         const data = await backendResponse.json();
 
-        console.log("Backend response status:", backendResponse.status);
-        console.log("Backend response data:", data);
 
         // If the backend request failed, return the error
         if (!backendResponse.ok) {
