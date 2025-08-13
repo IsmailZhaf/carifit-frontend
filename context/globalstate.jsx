@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const GlobalStateContext = createContext({});
 
 export function GlobalStateProvider({ children }) {
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const value = {
         isLoading,
