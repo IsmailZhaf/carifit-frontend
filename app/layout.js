@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { AuthProvider } from "@/context/provider";
 import { Toaster } from "@/components/ui/sonner";
+import { GlobalStateProvider } from "@/context/globalstate";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +18,7 @@ export default function RootLayout({ children }) {
             <body className={inter.className}>
                 <ThemeProvider attribute="class" enableSystem={true} defaultTheme="system">
                     <AuthProvider>
-                        {children}
+                        <GlobalStateProvider>{children}</GlobalStateProvider>
                         <Toaster richColors position="top-right" expand={true} closeButton={true} />
                     </AuthProvider>
                 </ThemeProvider>
