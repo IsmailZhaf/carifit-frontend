@@ -37,6 +37,7 @@ export function Sidebar({ className }) {
 
     const handleLogout = async () => {
         try {
+            localStorage.removeItem("access");
             await logout();
         } catch (error) {
             console.error("Logout failed:", error);
