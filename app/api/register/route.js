@@ -26,7 +26,7 @@ export async function POST(request) {
         });
 
         const data = await backendResponse.json();
-
+        
 
         // If the backend request failed, return the error
         if (!backendResponse.ok) {
@@ -39,6 +39,7 @@ export async function POST(request) {
                 message: data.message,
                 user: data.user || { name, email },
                 success: true,
+                token: data.token,
             },
             { status: 201 }
         );
