@@ -41,6 +41,7 @@ export function AuthProvider({ children }) {
         const data = await auth.register(name, email, password);
         setIsAuthenticated(true);
         setUser(data.user);
+        localStorage.setItem("access", data.token);
         return data;
     };
 
